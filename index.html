@@ -1,164 +1,271 @@
 <!DOCTYPE html>
-            <html lang="en">
+<html lang="en">
 
-              <head>
-                <meta charset="UTF-8" />
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <title>Document</title>
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
-              </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script type="text/javascript" src="../vendor/cronstrue.min.js"></script>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-              <body>
-                <div class="container m-4">
-                  <h3 id="frequncy">
-                    Frequency
-                  </h3>
-                  <div class="frequency btn-group my-4 mt-1" role="group" aria-label="Basic checkbox toggle button group">
-                    <select class="form-select" aria-label="Default select example">
-                      <option selected value="Hourly">Every hour</option>
-                      <option value="Daily">Every day</option>
-                      <option value="Weekly">Every week</option>
-                      <option value="Monthly">Every month</option>
-                      <option value="Yearly">Every year</option>
-                    </select>
-                  </div>
 
-                  <h3 id="weekdays">
-                    Weekdays
-                  </h3>
-                  <div class="weekdays btn-group my-4 mt-1" role="group" aria-label="Basic checkbox toggle button group">
+  <style>
+    .body {
+      color: var(--tg-theme-text-color, #000000);
+      font-family: "Roboto", sans-serif;
+    }
 
-                    <input type="checkbox" class="btn-check" id="Mon" onClick="pickWeekDay(this)" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="Mon">Mon</label>
+    .select {
+      display: grid;
+      max-width: 300px;
+      gap: 1px;
+      margin-top: 2px;
+    }
 
-                    <input type="checkbox" class="btn-check" id="Tue" onClick="pickWeekDay(this)" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="Tue">Tue</label>
 
-                    <input type="checkbox" class="btn-check" id="Wed" onClick="pickWeekDay(this)" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="Wed">Wed</label>
+    /* CSS */
+    .button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 6px 14px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+      border-radius: 6px;
+      border: none;
 
-                    <input type="checkbox" class="btn-check" id="Thu" onClick="pickWeekDay(this)" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="Thu">Thu</label>
+      background: #6E6D70;
+      box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
+      color: #DFDEDF;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
 
-                    <input type="checkbox" class="btn-check" id="Fri" onClick="pickWeekDay(this)" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="Fri">Fri</label>
+    .button:focus {
+      box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+      outline: 0;
+    }
 
-                    <input type="checkbox" class="btn-check" id="Sat" onClick="pickWeekDay(this)" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="Sat">Sat</label>
+    .select.weekdays {
+      grid-template-columns: repeat(7, 1fr);
+    }
 
-                    <input type="checkbox" class="btn-check" id="Sun" onClick="pickWeekDay(this)" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="Sun">Sun</label>
-                  </div>
+    .select.hours {
+      grid-template-columns: repeat(6, 1fr);
+    }
 
-                  <h3 id="hours">
-                    Hours
-                  </h3>
-                  <div class="container">
-                    <div class="hours-1 row row-cols-6 g-0 m-0">
-                      <div class="col">
-                        <input type="checkbox" class="btn-check" id="00" onClick="pickHour(this)" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="00">00:00</label>
-                      </div>
-                      <div class="col">
-                        <input type="checkbox" class="btn-check" id="01" onClick="pickHour(this)" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="01">01:00</label>
-                      </div>
-                      <div class="col">
-                        <input type="checkbox" class="btn-check" id="02" onClick="pickHour(this)" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="02">02:00</label>
-                      </div>
-                      <div class="col">
-                        <input type="checkbox" class="btn-check" id="03" onClick="pickHour(this)" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="03">03:00</label>
-                      </div>
-                      <div class="col">
-                        <input type="checkbox" class="btn-check" id="04" onClick="pickHour(this)" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="04">04:00</label>
-                      </div>
-                      <div class="col">
-                        <input type="checkbox" class="btn-check" id="05" onClick="pickHour(this)" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="05">05:00</label>
-                      </div>
-                      <div class="col">
-                        <input type="checkbox" class="btn-check" id="06" onClick="pickHour(this)" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="06">06:00</label>
-                      </div>
-                      <div class="col">
-                        <input type="checkbox" class="btn-check" id="07" onClick="pickHour(this)" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="07">07:00</label>
-                      </div>
-                      <div class="col">
-                        <input type="checkbox" class="btn-check" id="08" onClick="pickHour(this)" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="08">08:00</label>
-                      </div>
-                      <div class="col">
-                        <input type="checkbox" class="btn-check" id="09" onClick="pickHour(this)" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="09">09:00</label>
-                      </div>
-                      <div class="col">
-                        <input type="checkbox" class="btn-check" id="10" onClick="pickHour(this)" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="10">10:00</label>
-                      </div>
-                      <div class="col">
-                        <input type="checkbox" class="btn-check" id="11" onClick="pickHour(this)" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="11">11:00</label>
-                      </div>
-                      <div class="col">
-                        <input type="checkbox" class="btn-check" id="12" onClick="pickHour(this)" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="12">12:00</label>
-                      </div>
-                      <div class="col">
-                        <input type="checkbox" class="btn-check" id="13" onClick="pickHour(this)" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="13">13:00</label>
-                      </div>
-                      <div class="col">
-                        <input type="checkbox" class="btn-check" id="14" onClick="pickHour(this)" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="14">14:00</label>
-                      </div>
-                      <div class="col">
-                        <input type="checkbox" class="btn-check" id="15" onClick="pickHour(this)" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="15">15:00</label>
-                      </div>
-                      <div class="col">
-                        <input type="checkbox" class="btn-check" id="16" onClick="pickHour(this)" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="16">16:00</label>
-                      </div>
-                      <div class="col">
-                        <input type="checkbox" class="btn-check" id="17" onClick="pickHour(this)" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="17">17:00</label>
-                      </div>
-                      <div class="col">
-                        <input type="checkbox" class="btn-check" id="18" onClick="pickHour(this)" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="18">18:00</label>
-                      </div>
-                      <div class="col">
-                        <input type="checkbox" class="btn-check" id="19" onClick="pickHour(this)" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="19">19:00</label>
-                      </div>
-                      <div class="col">
-                        <input type="checkbox" class="btn-check" id="20" onClick="pickHour(this)" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="20">20:00</label>
-                      </div>
-                      <div class="col">
-                        <input type="checkbox" class="btn-check" id="21" onClick="pickHour(this)" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="21">21:00</label>
-                      </div>
-                      <div class="col">
-                        <input type="checkbox" class="btn-check" id="22" onClick="pickHour(this)" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="22">22:00</label>
-                      </div>
-                      <div class="col">
-                        <input type="checkbox" class="btn-check" id="23" onClick="pickHour(this)" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="23">23:00</label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+    .select__item {
+      padding: 10px;
+      cursor: pointer;
+      font-family: "Roboto", sans-serif;
+      text-align: center;
+      border-radius: 3px;
+      background: var(--tg-theme-button-color, #eeeeee);
+      color: var(--tg-theme-button-text-color, #000000);
+      transition: background 0.1s;
+    }
 
-                <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-                <script src="https://unpkg.com/cronstrue@latest/dist/cronstrue.min.js" async></script>
+    .select__item--selected {
+      background: #1186c5;
+      color: #ffffff;
+    }
+  </style>
+</head>
 
-              </body>
+<body>
+  <div class="container">
+    <h3>Weekdays</h3>
+    <div id="weekdays"></div>
+    <h3> Hours </h3>
+    <div id="hours"></div>
+    <p>Reminder will be sent </p>
+    <div id="cron"></div>
 
-            </html>
+    <div class="button" id="confirm_button"> Confirm </div>
+  </div>
+
+  <script type="application/javascript">
+    const weekdays = {
+      "Mon": '1',
+      "Tue": '2',
+      "Wed": '3',
+      "Thu": '4',
+      "Fri": '5',
+      "Sat": '6',
+      "Sun": '7'
+    }
+    const hours = {
+      "00:00": '0',
+      "01:00": '1',
+      "02:00": '2',
+      "03:00": '3',
+      "04:00": '4',
+      "05:00": '5',
+      "06:00": '6',
+      "07:00": '7',
+      "08:00": '8',
+      "09:00": '9',
+      "10:00": '10',
+      "11:00": '11',
+      "12:00": '12',
+      "11:00": '11',
+      "12:00": '12',
+      "13:00": '13',
+      "14:00": '14',
+      "15:00": '15',
+      "16:00": '16',
+      "17:00": '17',
+      "18:00": '18',
+      "19:00": '19',
+      "20:00": '20',
+      "21:00": '21',
+      "22:00": '22',
+      "23:00": '23'
+    }
+
+    class CronExpression {
+      constructor() {
+        this.minutes = ['0']
+        this.hours = ['*']
+        this.days = ['*']
+        this.months = ['*']
+        this.weekdays = ['*']
+        this.element = document.createElement("p")
+
+        this.update_dom()
+        this.element
+      }
+
+      cron_expression() {
+        return `${this.minutes.join(',')} ${this.hours.join(',')} ${this.days.join(',')} ${this.months.join(',')} ${this.weekdays.join(',')}`
+      }
+
+      add(type, number) {
+        switch(type) {
+          case 'hours':
+            if (this.hours.toString() == ['*'].toString()) {
+              this.hours = [number]
+            } else {
+              this.hours.push(number)
+            }
+            break
+          case 'weekdays':
+            if (this.weekdays == ['*'].toString()) {
+              this.weekdays = [number]
+            } else {
+              this.weekdays.push(number)
+            }
+            break
+          default:
+            console.log(`wrong type ${type}`)
+        }
+
+        this.update_dom()
+      }
+
+      remove(type, number) {
+        switch(type) {
+          case 'hours':
+            this.hours = this.hours.filter(x => x !== number);
+
+            if (this.hours.length === 0) {
+              this.hours = ['*']
+            }
+
+            break
+          case 'weekdays':
+            this.weekdays = this.weekdays.filter(x => x !== number);
+
+            if (this.weekdays.length === 0) {
+              this.weekdays = ['*']
+            }
+            break
+          default:
+            console.log(`wrong type ${type}`)
+        }
+
+        this.update_dom()
+      }
+
+      update_dom() {
+        this.element.textContent = cronstrue.toString(this.cron_expression(), { verbose: true, use24HourTimeFormat: true })
+      }
+    }
+
+    cron = new CronExpression
+    document.querySelector("#cron").replaceWith(cron.element);
+
+    class CustomSelect {
+      constructor(options, className) {
+        this.customSelect = document.createElement("div");
+        this.customSelect.classList.add("select");
+        this.customSelect.classList.add(className);
+
+        for (const [name, value] of Object.entries(options)){
+          const itemElement = document.createElement("div");
+
+          itemElement.classList.add("select__item");
+          itemElement.textContent = name;
+          this.customSelect.appendChild(itemElement);
+
+          itemElement.addEventListener("click", () => {
+            if (itemElement.classList.contains("select__item--selected")) {
+              this._deselect(itemElement);
+            } else {
+              this._select(itemElement);
+            }
+          });
+        };
+
+        return this.customSelect
+      }
+
+      _select(itemElement) {
+        itemElement.classList.add("select__item--selected");
+        var element_type = itemElement.parentNode.classList[1]
+        let dict
+        switch (element_type) {
+          case 'hours':
+            dict = hours
+            break
+          case 'weekdays':
+            dict = weekdays
+            break
+        }
+        cron.add(element_type, dict[itemElement.textContent])
+      }
+
+      _deselect(itemElement) {
+        itemElement.classList.remove("select__item--selected");
+        var element_type = itemElement.parentNode.classList[1]
+        let dict
+        switch (element_type) {
+          case 'hours':
+            dict = hours
+            break
+          case 'weekdays':
+            dict = weekdays
+            break
+        }
+        cron.remove(element_type, dict[itemElement.textContent])
+      }
+    }
+
+    weekdays_element = new CustomSelect(weekdays, 'weekdays');
+    hours_element = new CustomSelect(hours, 'hours');
+    document.querySelector("#weekdays").replaceWith(weekdays_element);
+    document.querySelector("#hours").replaceWith(hours_element);
+
+    confirm_button = document.querySelector("#confirm_button")
+
+    confirm_button.addEventListener("click", () => {
+      Telegram.WebApp.sendData({
+        'cron': cron.cron_expression,
+        'timezone': Intl.DateTimeFormat().resolvedOptions().timeZone
+      })
+      Telegram.WebApp.close()
+    });
+  </script>
+</body>
+
+</html>
