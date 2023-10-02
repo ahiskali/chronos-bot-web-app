@@ -1,0 +1,76 @@
+body {
+  background-color: var(--tg-theme-bg-color);
+  color: var(--tg-theme-text-color, #000000);
+  font-family: "Roboto", sans-serif;
+}
+
+p {
+  margin: 8px;
+}
+
+.select {
+  display: grid;
+  max-width: 300px;
+  gap: 1px;
+  margin-top: 2px;
+}
+
+
+#form {
+  border-radius: 2px;
+  border: 3px solid rgba(0, 0, 0, 0.2);
+  transition: all 0.5s;
+}
+
+#form:hover {
+  border: 2px solid rgba(5, 5, 5, 0.5);
+}
+#form:focus {
+  border: 2px solid rgba(255,255,255,0.5);
+}
+
+#confirm_button {
+  padding: 2px;
+  margin-top: 0.2em;
+  text-align: center;
+  font-weight:bold;
+  outline:none;
+  background: linear-gradient(to left top, #000, #4e2d69) fixed;
+  border-radius: 10px;
+  border: 5px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.8);
+  transition: all 0.5s;
+}
+
+#confirm_button:hover {
+  border: 5px solid rgba(255,255,255,0.5);
+  background: linear-gradient(to left top, #000, #8b5db0) fixed;
+}
+
+#confirm_button:focus {
+  background: linear-gradient(to left top, #8b5db0, #000) fixed;
+}
+
+.select.weekdays {
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.select.hours {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.select__item {
+  padding: 10px;
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  border-radius: 3px;
+  background: var(--tg-theme-button-color, #eeeeee);
+  color: var(--tg-theme-button-text-color, #000000);
+  transition: background 0.1s;
+}
+
+.select__item--selected {
+  background: #1186c5;
+  color: #ffffff;
+}
