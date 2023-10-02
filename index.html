@@ -5,12 +5,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
-  <script type="text/javascript" src="./cronstrue.min.js"></script>
+  <script type="text/javascript" src="./vendor/cronstrue.min.js"></script>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
 
   <style>
     .body {
+      background-color: var(--tg-theme-bg-color);
       color: var(--tg-theme-text-color, #000000);
       font-family: "Roboto", sans-serif;
     }
@@ -259,10 +260,12 @@
     confirm_button = document.querySelector("#confirm_button")
 
     confirm_button.addEventListener("click", () => {
-      Telegram.WebApp.sendData({
-        'cron': cron.cron_expression,
-        'timezone': Intl.DateTimeFormat().resolvedOptions().timeZone
-      })
+      data = {
+        cron: cron.cron_expression(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+      }
+
+      Telegram.WebApp.sendData([data])
       Telegram.WebApp.close()
     });
   </script>
