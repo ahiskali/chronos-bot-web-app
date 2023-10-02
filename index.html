@@ -265,7 +265,7 @@
         timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       }
 
-      Telegram.WebApp.sendData([data])
+      Telegram.WebApp.sendData(JSON.stringify(data))
       Telegram.WebApp.close()
     });
   </script>
