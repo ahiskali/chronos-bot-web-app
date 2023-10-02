@@ -1,6 +1,6 @@
 body {
-  background-color: var(--tg-theme-bg-color);
-  color: var(--tg-theme-text-color, #000000);
+  background-color: var(--tg-theme-bg-color, #18222d);
+  color: var(--tg-theme-text-color, #ffffff);
   font-family: "Roboto", sans-serif;
 }
 
@@ -18,16 +18,17 @@ p {
 
 #form {
   border-radius: 2px;
-  border: 3px solid rgba(0, 0, 0, 0.2);
+  border-color: var(--tg-theme-secondary-bg-color, #131415);
   transition: all 0.5s;
 }
 
-#form:hover {
-  border: 2px solid rgba(5, 5, 5, 0.5);
-}
-#form:focus {
-  border: 2px solid rgba(255,255,255,0.5);
-}
+/* #form:hover {
+  border-radius: 2px;
+  border-color: var(--tg-theme-secondary-bg-color, #131415);
+} */
+/* #form:focus {
+  border: 20px solid var(--tg-theme-button-color, #2ea6ff);
+} */
 
 #confirm_button {
   padding: 2px;
@@ -35,21 +36,16 @@ p {
   text-align: center;
   font-weight:bold;
   outline:none;
-  background: linear-gradient(to left top, #000, #4e2d69) fixed;
-  border-radius: 10px;
-  border: 5px solid rgba(255,255,255,0.2);
-  color: rgba(255,255,255,0.8);
+  background: var(--tg-theme-button-color, #2ea6ff);
+  border-radius: 2px;
+  border: 5px var(--tg-theme-secondary-bg-color, #131415);
+  color: var(--tg-theme-button-text-color, #ffffff);
   transition: all 0.5s;
 }
 
-#confirm_button:hover {
-  border: 5px solid rgba(255,255,255,0.5);
-  background: linear-gradient(to left top, #000, #8b5db0) fixed;
-}
-
-#confirm_button:focus {
-  background: linear-gradient(to left top, #8b5db0, #000) fixed;
-}
+/* #confirm_button:focus {
+  background: linear-gradient(to left top, var(--tg-theme-button-color, #2ea6ff), var(--tg-theme-secondary-bg-color, #131415)) fixed;
+} */
 
 .select.weekdays {
   grid-template-columns: repeat(7, 1fr);
@@ -64,12 +60,13 @@ p {
   cursor: pointer;
   font-family: "Roboto", sans-serif;
   text-align: center;
-  border-radius: 3px;
-  background: rgba(var(--tg-theme-button-color, #eeeeee), 0.2);
-  color: var(--tg-theme-button-text-color, #000000);
+  border-radius: 4px;
+  border-color: var(--tg-theme-button-color, #2ea6ff);
+  background: var(--tg-theme-secondary-bg-color, #131415);
+  color: var(--tg-theme-button-text-color, #ffffff);
   transition: background 0.1s;
 }
 
 .select__item--selected {
-  background: rgba(var(--tg-theme-button-color, #eeeeee), 0.8);
+  background: var(--tg-theme-button-color, #2ea6ff);
 }
