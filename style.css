@@ -65,12 +65,11 @@ p {
   font-family: "Roboto", sans-serif;
   text-align: center;
   border-radius: 3px;
-  background: var(--tg-theme-button-color, #eeeeee);
+  background: rgba(var(--tg-theme-button-color, #eeeeee), 0.2);
   color: var(--tg-theme-button-text-color, #000000);
   transition: background 0.1s;
 }
 
 .select__item--selected {
-  background: #1186c5;
-  color: #ffffff;
+  background: rgba(var(--tg-theme-button-color, #eeeeee), 0.8);
 }
